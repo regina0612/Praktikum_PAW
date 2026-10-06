@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mini POS - Kasir Kampus</title>
+
+    <!-- Menghubungkan CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <div>
+                <h1>Mini POS</h1>
+                <p>Kasir Sederhana Kantin Kampus</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+            <div class="section-title">
+                <h2>Tambah Barang</h2>
+                <p>Masukkan barang yang ingin dibeli</p>
+            </div>
+
+            <form id="formBarang">
+
+                <!-- Nama Barang -->
+                <div class="form-group">
+                    <label for="namaBarang">
+                        Nama Barang
+                    </label>
+
+                    <input
+                        type="text"
+                        id="namaBarang"
+                        placeholder="Contoh: Buku Tulis"
+                    >
+
+                    <small
+                        id="errorNama"
+                        class="error-message">
+                    </small>
+                </div>
+
+
+                <!-- Harga Barang -->
+                <div class="form-group">
+                    <label for="hargaBarang">
+                        Harga Satuan
+                    </label>
+
+                    <input
+                        type="number"
+                        id="hargaBarang"
+                        placeholder="Contoh: 5000"
+                        min="0"
+                    >
+
+                    <small
+                        id="errorHarga"
+                        class="error-message">
+                    </small>
+                </div>
+
+
+                <!-- Jumlah Barang -->
+                <div class="form-group">
+                    <label for="qtyBarang">
+                        Jumlah / Qty
+                    </label>
+
+                    <input
+                        type="number"
+                        id="qtyBarang"
+                        placeholder="Contoh: 2"
+                        min="1"
+                    >
+
+                    <small
+                        id="errorQty"
+                        class="error-message">
+                    </small>
+                </div>
+
+
+                <!-- Tombol Tambah -->
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    + Tambah ke Keranjang
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ==============================
+             KERANJANG BELANJA
+        =============================== -->
+        <section class="card">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>Keranjang Belanja</h2>
+                    <p>Daftar barang yang akan dibayar</p>
+                </div>
+
+                <span
+                    id="jumlahItem"
+                    class="item-badge">
+                    0 Item
+                </span>
+
+            </div>
+
+
+            <!-- Tabel Keranjang -->
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Barang</th>
+                            <th>Harga Satuan</th>
+                            <th>Qty</th>
+                            <th>Subtotal</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabelKeranjang">
+
+                        <!-- Data barang akan dimasukkan
+                             melalui JavaScript -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- Pesan Keranjang Kosong -->
+            <p
+                id="keranjangKosong"
+                class="empty-message">
+                Keranjang masih kosong.
+            </p>
+
+        </section>
+
+
+        <!-- ==============================
+             RINGKASAN PEMBAYARAN
+        =============================== -->
+        <section class="card">
+
+            <div class="section-title">
+                <h2>Ringkasan Pembayaran</h2>
+                <p>Periksa total belanja sebelum membayar</p>
+            </div>
+
+
+            <div class="summary">
+
+                <!-- Total Belanja -->
+                <div class="summary-row">
+                    <span>Total Belanja</span>
+
+                    <strong id="totalBelanja">
+                        Rp 0
+                    </strong>
+                </div>
+
+
+                <!-- Diskon -->
+                <div class="summary-row">
+                    <span>Diskon 10%</span>
+
+                    <strong
+                        id="nominalDiskon"
+                        class="discount">
+                        Rp 0
+                    </strong>
+                </div>
+
+
+                <!-- Total Akhir -->
+                <div class="summary-row total-row">
+                    <span>Total Akhir</span>
+
+                    <strong id="totalAkhir">
+                        Rp 0
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <!-- ==============================
+                 PEMBAYARAN
+            =============================== -->
+            <div class="payment-section">
+
+                <label for="uangBayar">
+                    Uang Bayar
+                </label>
+
+                <input
+                    type="number"
+                    id="uangBayar"
+                    placeholder="Masukkan uang yang diterima"
+                    min="0"
+                >
+
+                <p
+                    id="statusPembayaran"
+                    class="payment-status">
+                </p>
+
+            </div>
+
+
+            <!-- Kembalian -->
+            <div class="change-box">
+
+                <span>Kembalian</span>
+
+                <strong id="kembalian">
+                    Rp 0
+                </strong>
+
+            </div>
+
+
+            <!-- Tombol Selesaikan Transaksi -->
+            <button
+                type="button"
+                id="btnSelesai"
+                class="btn btn-success">
+                ✓ Selesaikan Transaksi
+            </button>
+
+
+            <!-- Tombol Transaksi Baru -->
+            <button
+                type="button"
+                id="btnReset"
+                class="btn btn-danger">
+                ↻ Transaksi Baru
+            </button>
+
+        </section>
+
+
+        <!-- ==============================
+             RIWAYAT TRANSAKSI
+        =============================== -->
+        <section class="card">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>Riwayat Transaksi</h2>
+                    <p>Daftar transaksi yang telah selesai</p>
+                </div>
+
+                <span
+                    id="jumlahRiwayat"
+                    class="item-badge">
+                    0 Transaksi
+                </span>
+
+            </div>
+
+
+            <!-- Tabel Riwayat -->
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Total Belanja</th>
+                            <th>Diskon</th>
+                            <th>Total Akhir</th>
+                            <th>Uang Bayar</th>
+                            <th>Kembalian</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabelRiwayat">
+
+                        <!-- Riwayat transaksi akan
+                             dimasukkan melalui JavaScript -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- Pesan jika belum ada riwayat -->
+            <p
+                id="riwayatKosong"
+                class="empty-message">
+                Belum ada transaksi.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==============================
+         FOOTER
+    =============================== -->
+    <footer class="footer">
+
+        <p>
+            Mini POS &copy; 2026 - Praktikum Pemrograman Web
+        </p>
+
+    </footer>
+
+
+    <!-- Menghubungkan JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
+
