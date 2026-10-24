@@ -1,0 +1,183 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6fb;
+  color: #263247;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+.button-link {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  background: #5267d9;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+button:hover,
+.button-link:hover {
+  background: #394db8;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 11px;
+  margin: 6px 0 16px;
+  border: 1px solid #d5dbea;
+  border-radius: 8px;
+  background: white;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+h1,
+h2,
+h3 {
+  color: #27345b;
+}
+
+.app-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.navbar,
+.nav-links,
+.page-header,
+.book-card,
+.book-card-actions,
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.navbar {
+  padding: 18px 0;
+  margin-bottom: 28px;
+  border-bottom: 1px solid #dce1ed;
+}
+
+.navbar a {
+  color: #394db8;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.page-header {
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.book-form,
+.book-filter,
+.book-card,
+.stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 12px #26324710;
+}
+
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.book-card {
+  margin-bottom: 0;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.book-card h3 {
+  overflow-wrap: anywhere;
+}
+
+.book-card-actions {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.status {
+  display: inline-block;
+  padding: 6px 10px;
+  margin-top: 8px;
+  border-radius: 20px;
+  background: #e8ecff;
+  font-size: 13px;
+}
+
+.status-reading {
+  background: #fff0cc;
+}
+
+.status-wishlist {
+  background: #fce4ec;
+}
+
+.form-error {
+  color: #c62828;
+}
+
+.success-message {
+  color: #247a45;
+  background: #e5f7eb;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.empty-message {
+  color: #68738a;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.stat-card p {
+  font-size: 32px;
+  font-weight: bold;
+  color: #5267d9;
+}
+
+.app-footer {
+  text-align: center;
+  color: #68738a;
+  padding: 28px 0;
+}
+
+@media (max-width: 600px) {
+  .app-container {
+    padding: 16px;
+  }
+
+  .navbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
